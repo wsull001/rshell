@@ -1,0 +1,1 @@
+echo "hello"; echo "world" && echo "Yes, I know I'm original!"; ls tkzd || echo "This should print";
