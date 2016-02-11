@@ -1,3 +1,6 @@
+**NAMES**: 
+    SriSri Gokanapudy 861165241
+    Wyatt Sullivan 861177409
 **SUMMARY OF PROJECT**: The terminal is opened in the format of loginID@hostMachine$. 
                         When a command is entered the CmdFramer class reads in each 
                         command till the end of the line. Then executes it. 
