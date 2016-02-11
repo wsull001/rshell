@@ -1,5 +1,5 @@
 **NAMES**: 
-    SriSri Gokanapudy 861165241
+    Srisri Gokanapudy 861165241
     Wyatt Sullivan 861177409
 <br />
 **SUMMARY OF PROJECT**: The terminal is opened in the format of loginID@hostMachine$. 
@@ -12,5 +12,5 @@
         our terminal can't accept a copy-paste command that has multiple lines
 <br />
 **COMPLICATION**: The assignment specs were not specific with order of operations with regards
-        to linkers, so we assigned equal precedance to all of them (;, ||, and &&)
+        to linkers, so we assigned equal precedance to all of them (||, ;, and &&)
 <br />
