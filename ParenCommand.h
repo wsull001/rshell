@@ -51,6 +51,7 @@ class ParenCommand : public Command {
                 t = this->success->execute(exec, 1, suc);
             } else if (failure) {
                 t = failure->execute(exec, 2, suc);
+            }
             else if (next) {
                 t = next->execute(exec);
             }
