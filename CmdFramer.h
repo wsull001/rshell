@@ -130,7 +130,6 @@ class Cmd_Framer {
                 }
                 command = new Command(cmd, args, v.size());
             } else {
-                cout << parenString << endl;
                 istringstream newStrin(parenString);
                 command = new ParenCommand(this->frame(newStrin));
             }
