@@ -19,14 +19,14 @@ class Executor : public ExecutorBase {
         
         if (strcmp(args[0], "exit") == 0) {
             exit(0);
+        } 
+        
+        if (strcmp(args[0], "test") == 0) {
+            if (strcmp(args[1], "-e") == 0) {
+                cout << "test -e works!!!!!!" <<endl;
+            }
+            return 0;
         }
-        
-        string tester;
-        getline(cin, tester)
-        
-        if (strcmp(args[0], tester) == 0) {
-            cout << "test -e worked" << endl;
-        }      
         
         int procID, status;
         
