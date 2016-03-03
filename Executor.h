@@ -6,6 +6,13 @@
 #include <sys/wait.h>
 #include <cstdlib>
 #include <string.h>
+
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <time.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 #include "Command.h"
 #include "ExecutorBase.h"
 using namespace std;
@@ -22,16 +29,24 @@ class Executor : public ExecutorBase {
         } 
         
         if (strcmp(args[0], "test") == 0) {
-            if (args[1] && (strcmp(args[1], "-f") == 0)) {
-                if (args[2] && (strcmp(args[2], "/test") == 0)) {
-                    cout << "lemme freak!!" << endl;          
-                }
+            if (args[1] && (strcmp(args[1], "-f") == 0)) { 
+                //FIXME: STILL NEED TO DO THIS PART
             }
+
             if (args[1] && (strcmp(args[1], "-d") == 0)) {
                 //FIXME: STILL NEED TO DO THIS PART
             }
+
             else { //default is to do the -e
-                //FIXME: STILL NEED TO DO THIS PART
+                if (args[2]) {
+                    struct stat nike;
+                    if (stat(args[2], &nike) == 0 && S_ISDIR(nike.st_mode)){
+                        cout << "IS THIS REAL LIFE" << endl;
+                    }
+                    else {
+                        cout << "(FALSE)" << endl;
+                    }
+                                        
             }
             return 0;
         }
