@@ -46,6 +46,7 @@ class Executor : public ExecutorBase {
                     else {
                         cout << "(FALSE)" << endl;
                     }
+                }
                                         
             }
             return 0;
