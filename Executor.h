@@ -22,16 +22,17 @@ class Executor : public ExecutorBase {
         } 
         
         if (strcmp(args[0], "test") == 0) {
-            if (strcmp(args[1], "-e") == 0) {
-                
+            if (args[1] && (strcmp(args[1], "-f") == 0)) {
+                if (args[2] && (strcmp(args[2], "/test") == 0)) {
+                    cout << "lemme freak!!" << endl;          
+                }
             }
-            if (strcmp(args[1], "-f") == 0) {
-
+            if (args[1] && (strcmp(args[1], "-d") == 0)) {
+                //FIXME: STILL NEED TO DO THIS PART
             }
-            if (strcmp(args[1], "-d") == 0) {
-
+            else { //default is to do the -e
+                //FIXME: STILL NEED TO DO THIS PART
             }
-        
             return 0;
         }
         
