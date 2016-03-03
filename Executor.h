@@ -29,20 +29,41 @@ class Executor : public ExecutorBase {
         } 
         
         if (strcmp(args[0], "test") == 0) {
-            if (args[1] && (strcmp(args[1], "-f") == 0)) { 
-                //FIXME: STILL NEED TO DO THIS PART
-            }
-
-            if (args[1] && (strcmp(args[1], "-d") == 0)) {
-                //FIXME: STILL NEED TO DO THIS PART
-            }
-
-            else { //default is to do the -e
+            if (args[1] && (strcmp(args[1], "-f") == 0)) { //CHECKS IF FILE IS A REGULAR FILE
                 if (args[2]) {
                     struct stat nike;
-                    if (stat(args[2], &nike) == 0 && S_ISDIR(nike.st_mode)){
-                        cout << "IS THIS REAL LIFE" << endl;
+                    if (stat(args[2], &nike) == 0 && S_ISREG(nike.st_mode)) {
+                        cout << "(TRUE)" << endl;
                     }
+                    else {
+                        cout << "(FALSE)" << endl;
+                    }
+                }
+            }
+
+            if (args[1] && (strcmp(args[1], "-d") == 0)) { //CHECKS IF FILE IS A DIRECTORY
+                if (args[2]) {
+                    struct stat nike;
+                    if (stat(args[2], &nike) == 0 && S_ISDIR(nike.st_mode)) {
+                        cout << "(TRUE)" << endl;
+                    }
+                    else {
+                        cout << "(FALSE)" << endl;
+                    }
+                }
+            }
+
+            else { //default is to do the -e && CHECKS IF FILE IS DIRECTORY OR REG FILE
+                if (args[2]) {
+                    struct stat nike;
+                    if (stat(args[2], &nike) == 0 && S_ISDIR(nike.st_mode)) {
+                        cout << "(TRUE)" << endl;
+                    }
+                    
+                    else if (stat(args[2], &nike) == 0 && S_ISREG(nike.st_mode)) {
+                        cout << "(TRUE)" << endl;
+                    }
+
                     else {
                         cout << "(FALSE)" << endl;
                     }
