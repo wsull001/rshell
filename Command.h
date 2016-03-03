@@ -13,7 +13,7 @@ void printTabs(int t) {
 }
 
 class Command {
-    private:
+    protected:
         int size;
         char* cmd;
         char** args;
