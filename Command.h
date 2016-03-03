@@ -55,7 +55,7 @@ class Command {
         };
         
         //deconstructor for command de-allocates dynamically allocated memory
-        ~Command() {
+        virtual ~Command() {
             delete[] cmd;
             for (int i = 0; i < size; i++) {
                 delete[] args[i];
