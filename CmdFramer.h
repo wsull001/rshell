@@ -13,6 +13,7 @@ class Cmd_Framer {
         Cmd_Framer() {};
         Command* frame(istringstream& linein) {
             string temp;
+            string parenString;
             vector<string> v;
             bool hasAllArgs = false;
             bool hasNext = false;
@@ -27,21 +28,22 @@ class Cmd_Framer {
                     //parens
                     parenCommand = true;
 
-                    if (parenCommand) {} //deal with warning
                     
                     bool parseForClose = true;
-                    if (temp.at(temp.size() - 1) == ')') parseForClose = false;
-
+                    if (temp.at(temp.size() - 1) == ')') {
+                        parseForClose = false;
+                        temp = temp.substr(0, temp.size() - 1);
+                    }
                     while (parseForClose) {
                         char myChar = 0;
-                        linein.get(&myChar, 1);
+                        linein.get(&myChar, 2);
                         if (myChar != ')') {
                             temp = temp + myChar;
                         } else {
                             parseForClose = false;
                         }
                     }
-                    string tempStr = temp.substr(1);
+                    parenString = temp.substr(1);
                     linein >> temp; //assume its followed by connector
                     if (temp.at(temp.size() - 1) == ';') {
                         hasNext = true;
@@ -128,7 +130,9 @@ class Cmd_Framer {
                 }
                 command = new Command(cmd, args, v.size());
             } else {
-                
+                cout << parenString << endl;
+                istringstream newStrin(parenString);
+                command = new ParenCommand(this->frame(newStrin));
             }
                 
             
