@@ -19,4 +19,5 @@ $(EXEC): $(OBJECTS)
 
 clean:
 	rm -f $(EXEC) $(OBJECTS)
+	rm -rf bin
 
