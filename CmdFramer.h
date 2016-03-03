@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include "Command.h"
+#include "ParenCommand.h"
 #include <sstream>
 using namespace std;
 
@@ -16,10 +17,38 @@ class Cmd_Framer {
             bool hasAllArgs = false;
             bool hasNext = false;
             bool parenCommand = false;
-            bool fistItr = true;
+            bool firstItr = true;
             while (!hasAllArgs) {
                 
                 bool tester = (linein >> temp);
+                //deal with parentheses
+                if (tester && (temp.at(0) == '(') && firstItr) {
+                    //assume parentheses are broken with spaces, so only last character can be closing
+                    //parens
+                    parenCommand = true;
+
+                    if (parenCommand) {} //deal with warning
+                    
+                    bool parseForClose = true;
+                    if (temp.at(temp.size() - 1) == ')') parseForClose = false;
+
+                    while (parseForClose) {
+                        char myChar = 0;
+                        linein.get(&myChar, 1);
+                        if (myChar != ')') {
+                            temp = temp + myChar;
+                        } else {
+                            parseForClose = false;
+                        }
+                    }
+                    string tempStr = temp.substr(1);
+                    linein >> temp; //assume its followed by connector
+                    if (temp.at(temp.size() - 1) == ';') {
+                        hasNext = true;
+                    }
+                    
+                }
+                firstItr = false;
                 //deal with quotations
                 if (tester && temp.at(0) == '"') {
                     bool keepParsing = true;
@@ -84,19 +113,24 @@ class Cmd_Framer {
                 }
             }
             
-            //if no arguments then no command so return null pointer
-            if (v.size() == 0) {
+            //if no arguments then no command so return null pointer and not a parenCommand
+            if (v.size() == 0 && !parenCommand) {
                 return NULL;
             }
             
             //create the command object
-            
-            char* cmd = (char*)v.at(0).c_str();
-            char** args = new char*[v.size()];
-            for (unsigned i = 0; i < v.size(); i++) {
-                args[i] = (char*)v.at(i).c_str();
+            Command* command;
+            if (!parenCommand) {
+                char* cmd = (char*)v.at(0).c_str();
+                char** args = new char*[v.size()];
+                for (unsigned i = 0; i < v.size(); i++) {
+                    args[i] = (char*)v.at(i).c_str();
+                }
+                command = new Command(cmd, args, v.size());
+            } else {
+                
             }
-            Command* command = new Command(cmd, args, v.size());
+                
             
             //now add next, success, and failure commands
             if (hasNext) {
