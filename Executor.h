@@ -33,39 +33,39 @@ class Executor : public ExecutorBase {
                 if (args[2]) {
                     struct stat nike;
                     if (stat(args[2], &nike) == 0 && S_ISREG(nike.st_mode)) {
-                        cout << "(TRUE)" << endl;
+                        cout << "(True)" << endl;
                     }
                     else {
-                        cout << "(FALSE)" << endl;
+                        cout << "(False)" << endl;
                     }
                 }
             }
 
-            if (args[1] && (strcmp(args[1], "-d") == 0)) { //CHECKS IF FILE IS A DIRECTORY
+            else if (args[1] && (strcmp(args[1], "-d") == 0)) { //CHECKS IF FILE IS A DIRECTORY
                 if (args[2]) {
                     struct stat nike;
                     if (stat(args[2], &nike) == 0 && S_ISDIR(nike.st_mode)) {
-                        cout << "(TRUE)" << endl;
+                        cout << "(True)" << endl;
                     }
                     else {
-                        cout << "(FALSE)" << endl;
+                        cout << "(False)" << endl;
                     }
                 }
             }
 
-            else { //default is to do the -e && CHECKS IF FILE IS DIRECTORY OR REG FILE
-                if (args[2]) {
+            else { //Default is to do the -e && CHECKS IF FILE IS DIRECTORY OR REG FILE
+                if (args[1]) {
                     struct stat nike;
-                    if (stat(args[2], &nike) == 0 && S_ISDIR(nike.st_mode)) {
-                        cout << "(TRUE)" << endl;
+                    if (stat(args[1], &nike) == 0 && S_ISDIR(nike.st_mode)) {
+                        cout << "(True)" << endl;
                     }
                     
-                    else if (stat(args[2], &nike) == 0 && S_ISREG(nike.st_mode)) {
-                        cout << "(TRUE)" << endl;
+                    else if (stat(args[1], &nike) == 0 && S_ISREG(nike.st_mode)) {
+                        cout << "(True)" << endl;
                     }
 
                     else {
-                        cout << "(FALSE)" << endl;
+                        cout << "(False)" << endl;
                     }
                 }
                                         
