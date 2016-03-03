@@ -34,9 +34,11 @@ class Executor : public ExecutorBase {
                     struct stat nike;
                     if (stat(args[2], &nike) == 0 && S_ISREG(nike.st_mode)) {
                         cout << "(True)" << endl;
+                        return 0;
                     }
                     else {
                         cout << "(False)" << endl;
+                        return 1;
                     }
                 }
             }
@@ -46,9 +48,11 @@ class Executor : public ExecutorBase {
                     struct stat nike;
                     if (stat(args[2], &nike) == 0 && S_ISDIR(nike.st_mode)) {
                         cout << "(True)" << endl;
+                        return 0;
                     }
                     else {
                         cout << "(False)" << endl;
+                        return 1;
                     }
                 }
             }
@@ -59,19 +63,21 @@ class Executor : public ExecutorBase {
                     struct stat nike;
                     if (stat(args[t], &nike) == 0 && S_ISDIR(nike.st_mode)) {
                         cout << "(True)" << endl;
+                        return 0;
                     }
                     
                     else if (stat(args[t], &nike) == 0 && S_ISREG(nike.st_mode)) {
                         cout << "(True)" << endl;
+                        return 0;
                     }
 
                     else {
                         cout << "(False)" << endl;
+                        return 1;
                     }
                 }
                                         
             }
-            return 0;
         }
         
         int procID, status;
