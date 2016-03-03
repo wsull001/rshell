@@ -5,6 +5,7 @@
 #include "CmdFramer.h"
 #include "Executor.h"
 #include "ExecutorBase.h"
+#include "ParenCommand.h"
 using namespace std;
 
 void testFunct(char* &p) {
