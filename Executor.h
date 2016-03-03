@@ -11,7 +11,6 @@
 #include <sys/stat.h>
 #include <time.h>
 #include <stdio.h>
-#include <stdlib.h>
 
 #include "Command.h"
 #include "ExecutorBase.h"
