@@ -21,6 +21,9 @@ class Executor : public ExecutorBase {
             exit(0);
         }
         
+        if (strcmp(args[0], "test -e") == 0) {
+            cout << "test -e worked!!!!!" << endl;
+        } 
         
         int procID, status;
         
