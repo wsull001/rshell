@@ -23,8 +23,15 @@ class Executor : public ExecutorBase {
         
         if (strcmp(args[0], "test") == 0) {
             if (strcmp(args[1], "-e") == 0) {
-                cout << "test -e works!!!!!!" <<endl;
+                
             }
+            if (strcmp(args[1], "-f") == 0) {
+
+            }
+            if (strcmp(args[1], "-d") == 0) {
+
+            }
+        
             return 0;
         }
         
