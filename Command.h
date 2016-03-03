@@ -21,6 +21,14 @@ class Command {
         Command* failure;
         Command* next;
     public:
+        Command() {
+            size = 0;
+            cmd = NULL;
+            args = NULL;
+            success = NULL;
+            failure = NULL;
+            next = NULL;
+        }
         Command(char* command, char** arguments, int size) {
             this->size = size;
             int len = strlen(command);
@@ -108,7 +116,7 @@ class Command {
         
         
         
-        int execute(ExecutorBase* exec, int type = -1, int success = -1) {
+        virtual int execute(ExecutorBase* exec, int type = -1, int success = -1) {
             int t = 0;
             if (type == -1 || type == 0) //type is either default or a next
                 t = exec->run_cmd(this);
@@ -127,11 +135,11 @@ class Command {
             }
             int suc = (t==0) ? 1 : 0; //if proc returned 0 then success is 1
             if (this->success) {
-                this->success->execute(exec, 1, suc);
+                t = this->success->execute(exec, 1, suc);
             } else if (failure) {
-                failure->execute(exec, 2, suc);
+                t = failure->execute(exec, 2, suc);
             } else if (next) {
-                next->execute(exec);
+                t = next->execute(exec);
             }
 
 
