@@ -108,17 +108,34 @@ class Command {
         
         
         
-        int execute(ExecutorBase* exec) {
-            int t = exec->run_cmd(this);
-            if (t == 0 && success != 0) {
-                success->execute(exec);
+        int execute(ExecutorBase* exec, int type = -1, int success = -1) {
+            int t = 0;
+            if (type == -1 || type == 0) //type is either default or a next
+                t = exec->run_cmd(this);
+            else if (type == 1) { //cmd type is a run if works type
+                if (success == 1) {
+                    t = exec->run_cmd(this);
+                } else {
+                    t = 1;
+                }
+            } else if (type == 2) { //cmd type is a run if fails type
+                if (success == 0) {
+                    t = exec->run_cmd(this);
+                } else {
+                    t = 0;
+                }
             }
-            else if (t != 0 && failure != 0) {
-                failure->execute(exec);
-            }
-            else if (next != 0) {
+            int suc = (t==0) ? 1 : 0; //if proc returned 0 then success is 1
+            if (this->success) {
+                this->success->execute(exec, 1, suc);
+            } else if (failure) {
+                failure->execute(exec, 2, suc);
+            } else if (next) {
                 next->execute(exec);
             }
+
+
+                       
             return t;
             
         };
