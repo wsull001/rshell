@@ -53,14 +53,15 @@ class Executor : public ExecutorBase {
                 }
             }
 
-            else { //Default is to do the -e && CHECKS IF FILE IS DIRECTORY OR REG FILE
+            else { //default is to do the -e && CHECKS IF FILE IS DIRECTORY OR REG FILE
+                int t = (strcmp(args[1], "-e") == 0) ? 2 : 1;
                 if (args[1]) {
                     struct stat nike;
-                    if (stat(args[1], &nike) == 0 && S_ISDIR(nike.st_mode)) {
+                    if (stat(args[t], &nike) == 0 && S_ISDIR(nike.st_mode)) {
                         cout << "(True)" << endl;
                     }
                     
-                    else if (stat(args[1], &nike) == 0 && S_ISREG(nike.st_mode)) {
+                    else if (stat(args[t], &nike) == 0 && S_ISREG(nike.st_mode)) {
                         cout << "(True)" << endl;
                     }
 
