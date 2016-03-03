@@ -15,6 +15,8 @@ class Cmd_Framer {
             vector<string> v;
             bool hasAllArgs = false;
             bool hasNext = false;
+            bool parenCommand = false;
+            bool fistItr = true;
             while (!hasAllArgs) {
                 
                 bool tester = (linein >> temp);
