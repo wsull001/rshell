@@ -1,0 +1,15 @@
+test -e tests            #returns true because there exists a directory called tests
+test -e Command.h        #returns true because there exists a regular file called Command.h
+test -e unreal.cpp       #returns false because there is no file or directory called unreal.cpp
+
+test -d tests            #returns true because there exists a directory called tests
+test -d Command.h        #returns false because although Command.h exists, it is a regular file NOT a directory
+test -d unreal.cpp       #returns false because unreal.cpp doesn't exist
+
+test -f tests            #returns false because tests is a directory and not a regular file
+test -f Command.h        #returns true because there exists a regular file called Command.h
+test -f unreal.cpp       #returns false because unreal.cpp doesn't exist
+
+test -e /home/csgrads/sgoka001/CS100/rshell/DIRECTORY_OR_REGULAR_FILE #works the same as the above tests for -e
+test -d /home/csgrads/sgoka001/CS100/rshell/DIRECTORY                 #works the same as the above tests for -d
+test -f /home/csgrads/sgoka001/CS100/rshell/REGULAR_FILE              #works the same as the above tests for -f
