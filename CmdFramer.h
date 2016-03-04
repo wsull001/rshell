@@ -27,6 +27,7 @@ class Cmd_Framer {
                     //assume parentheses are broken with spaces, so only last character can be closing
                     //parens
                     parenCommand = true;
+                    int numParens = 0;
 
                     
                     bool parseForClose = true;
@@ -34,13 +35,20 @@ class Cmd_Framer {
                         parseForClose = false;
                         temp = temp.substr(0, temp.size() - 1);
                     }
+                    for (unsigned i = 0; i < temp.size(); i++) {
+                        if (temp.at(i) == '(') numParens++;
+                    }
                     while (parseForClose) {
                         char myChar = 0;
-                        linein.get(&myChar, 2);
+                        if (!linein.get(&myChar, 2)) parseForClose = false;
                         if (myChar != ')') {
                             temp = temp + myChar;
+                            if (myChar == '(') 
+                                numParens++;
                         } else {
-                            parseForClose = false;
+                            if (!numParens)
+                                parseForClose = false;
+                            else numParens--;
                         }
                     }
                     parenString = temp.substr(1);
@@ -48,6 +56,8 @@ class Cmd_Framer {
                     if (temp.at(temp.size() - 1) == ';') {
                         hasNext = true;
                     }
+                    
+
                     
                 }
                 firstItr = false;
