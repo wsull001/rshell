@@ -4,7 +4,9 @@
 <br />
 **SUMMARY OF PROJECT**: The terminal is opened in the format of loginID@hostMachine$. 
                         When a command is entered the CmdFramer class reads in each 
-                        command till the end of the line. Then executes it. 
+                        command till the end of the line. Then executes it. The terminal can 
+                        additionally handle test -e, -f, -d flags and outputs (true) or (false) 
+                        for the tests. 
 <br />
 **BUG**: When you paste text with one or more line break, our program lets you paste
         all of it before executing the commands or displaying the prompts, and then
