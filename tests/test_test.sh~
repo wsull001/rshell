@@ -14,7 +14,10 @@ test -e /home/csgrads/sgoka001/CS100/rshell/DIRECTORY_OR_REGULAR_FILE #works the
 test -d /home/csgrads/sgoka001/CS100/rshell/DIRECTORY                 #works the same as the above tests for -d
 test -f /home/csgrads/sgoka001/CS100/rshell/REGULAR_FILE              #works the same as the above tests for -f
 
-test -e tests && echo "path exists" #returns true and "path exists" on the next line
-test -d tests && echo "path exists" #returns true and "path exists" on the next line
-test -f tests && echo "path exists" #returns false and "path exists" on the next line
+test -e tests && echo "path exists"        #returns true and "path exists" on the next line
+test -d tests && echo "path exists"        #returns true and "path exists" on the next line
+test -f Command.h && echo "path exists"    #returns true and "path exists" on the next line
 
+test -e unreal.cpp && echo "path exists"   #returns false ONLY
+test -d Command.h && echo "path exists"    #returns false ONLY
+test -f tests && echo "path exists"        #returns false ONLY

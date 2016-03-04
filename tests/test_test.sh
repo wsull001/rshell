@@ -21,3 +21,27 @@ test -f Command.h && echo "path exists"    #returns true and "path exists" on th
 test -e unreal.cpp && echo "path exists"   #returns false ONLY
 test -d Command.h && echo "path exists"    #returns false ONLY
 test -f tests && echo "path exists"        #returns false ONLY
+
+[ -e tests ]            #returns true because there exists a directory called tests
+[ -e Command.h ]        #returns true because there exists a regular file called Command.h
+[ -e unreal.cpp ]       #returns false because there is no file or directory called unreal.cpp
+
+[ -d tests ]            #returns true because there exists a directory called tests
+[ -d Command.h ]        #returns false because although Command.h exists, it is a regular file NOT a directory
+[ -d unreal.cpp ]       #returns false because unreal.cpp doesn't exist
+
+[ -f tests ]            #returns false because tests is a directory and not a regular file
+[ -f Command.h ]        #returns true because there exists a regular file called Command.h
+[ -f unreal.cpp ]       #returns false because unreal.cpp doesn't exist
+
+[ -e /home/csgrads/sgoka001/CS100/rshell/DIRECTORY_OR_REGULAR_FILE ] #works the same as the above tests for -e
+[ -d /home/csgrads/sgoka001/CS100/rshell/DIRECTORY ]                 #works the same as the above tests for -d
+[ -f /home/csgrads/sgoka001/CS100/rshell/REGULAR_FILE ]              #works the same as the above tests for -f
+
+[ -e tests && echo "path exists" ]        #returns true and "path exists" on the next line
+[ -d tests && echo "path exists" ]        #returns true and "path exists" on the next line
+[ -f Command.h && echo "path exists" ]    #returns true and "path exists" on the next line
+
+[ -e unreal.cpp && echo "path exists" ]   #returns false ONLY
+[ -d Command.h && echo "path exists" ]    #returns false ONLY
+[ -f tests && echo "path exists" ]        #returns false ONLY
