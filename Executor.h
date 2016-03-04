@@ -27,7 +27,7 @@ class Executor : public ExecutorBase {
             exit(0);
         } 
         
-        if (strcmp(args[0], "test") == 0) {
+        if (strcmp(args[0], "test") == 0 || strcmp(args[0], "[") == 0) {
             if (args[1] && (strcmp(args[1], "-f") == 0)) { //CHECKS IF FILE IS A REGULAR FILE
                 if (args[2]) {
                     struct stat nike;
@@ -78,7 +78,7 @@ class Executor : public ExecutorBase {
                                         
             }
         }
-        
+
         int procID, status;
         
         procID = fork();
