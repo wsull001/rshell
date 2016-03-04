@@ -29,16 +29,17 @@ class ParenCommand : public Command {
         virtual int execute(ExecutorBase* exec, int type = -1, int success = -1) {
             int t = 0;
             if (type == -1 || type == 0) {
-                t = base->execute(exec);
+                if (base)
+                    t = base->execute(exec);
             }
             else if (type == 1) { //run if works type
-                if (success == 1) {
+                if (success == 1 && base) {
                     t = base->execute(exec);
                 } else {
                     t = 1;
                 }
             } else if (type == 2) { //run if doesn't work type
-                if (success == 0) {
+                if (success == 0 && base) {
                     t = base->execute(exec);
                 } else {
                     t = 0;
