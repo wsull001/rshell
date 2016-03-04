@@ -31,12 +31,21 @@ class Cmd_Framer {
 
                     
                     bool parseForClose = true;
+                    bool singleCommand = false;
                     if (temp.at(temp.size() - 1) == ')') {
                         parseForClose = false;
                         temp = temp.substr(0, temp.size() - 1);
                     }
-                    for (unsigned i = 0; i < temp.size(); i++) {
-                        if (temp.at(i) == '(') numParens++;
+                    else if (temp.at(temp.size() - 2) == ')' && temp.at(temp.size() - 1) == ';') {
+                        singleCommand = true;
+                        parseForClose = false;
+                        temp = temp.substr(0, temp.size() - 2);
+                        hasNext = true;
+                    }
+                    for (unsigned i = 1; i < temp.size(); i++) {
+                        if (temp.at(i) == '('){
+                            numParens++;
+                        }
                     }
                     while (parseForClose) {
                         char myChar = 0;
@@ -52,7 +61,9 @@ class Cmd_Framer {
                         }
                     }
                     parenString = temp.substr(1);
-                    linein >> temp; //assume its followed by connector
+                    if (!singleCommand) {
+                        linein >> temp; //assume its followed by connector
+                    }
                     if (temp.at(temp.size() - 1) == ';') {
                         hasNext = true;
                     }
