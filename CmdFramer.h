@@ -41,6 +41,7 @@ class Cmd_Framer {
                         parseForClose = false;
                         temp = temp.substr(0, temp.size() - 2);
                         hasNext = true;
+                        hasAllArgs = true;
                     }
                     for (unsigned i = 1; i < temp.size(); i++) {
                         if (temp.at(i) == '('){
